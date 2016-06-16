@@ -41,4 +41,8 @@ if b:fortran_dialect != "f77"
   syn match fortran03Conditional  "\<class\s*is\>"
 
   "Add fix for numeric constants with suffixes
+
+  " module procedure blocks
+  syn region fortranModuleFunction transparent fold keepend extend start="^\s*\(elemental \|pure \|recursive \)\=\s*\(\(\(real \|integer \|logical \|complex \|double \s*precision \)\s*\((\(\s*kind\s*=\)\=\s*\w\+\s*)\)\=\)\|type\s\+(\s*\w\+\s*) \|character \((\(\s*len\s*=\)\=\s*\d\+\s*)\|(\(\s*kind\s*=\)\=\s*\w\+\s*)\)\=\)\=\s*\%(module \)\s*function\s\+\z(\a\w*\)" skip="^\s*[!#].*$" excludenl end="\<end\s*\($\|function\(\s\+\z1\>\)\=\)" contains=ALLBUT,fortranProgram,fortranModule
+  syn region fortranModuleSubroutine transparent fold keepend extend start="^\s*\(elemental \|pure \|recursive \)\=\s*\%(module \)\s*subroutine\s\+\z(\a\w*\)" skip="^\s*[!#].*$" excludenl end="\<end\s*\($\|subroutine\(\s\+\z1\>\)\=\)" contains=ALLBUT,fortranProgram,fortranModule
 endif
